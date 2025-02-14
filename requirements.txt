@@ -5,4 +5,4 @@ datetime
 numpy
 matplotlib
 keras
-from sklearn.preprocessing import MinMaxScaler
+scikit-learn
