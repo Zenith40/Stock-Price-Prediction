@@ -212,4 +212,5 @@ if st.button("Analyze", use_container_width=True):
     st.subheader(f" * {stockDf.iloc[-1,0].strftime('%Y-%m-%d')} prediction Value : {np.around(y_predicted[-1][0],2)}")
     st.subheader(f" * Offset : {np.around((np.array(final_df.tail(1))[0][0])-(y_predicted[-1][0]),2)}")
     st.subheader(f" * Prediction for tomorrow : {np.around(scaler.inverse_transform(x)[0][0],2)}")
+    st.subheader(f" Prediction Value with offset : {np.around((scaler.inverse_transform(x)[0][0])+((np.array(final_df.tail(1))[0][0])-(y_predicted[-1][0])),2)}")
     
