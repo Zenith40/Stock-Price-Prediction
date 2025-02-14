@@ -161,7 +161,7 @@ final_df = pd.concat([past_100_days, data_testing], ignore_index=True)
 
 # Scaling Testing Data
 
-input_data = scaler.transform(final_df)
+input_data = scaler.fit_transform(final_df)
 
 
 x_test = []
@@ -175,11 +175,13 @@ x_test, y_test = np.array(x_test), np.array(y_test)
 
 y_predicted = model.predict(x_test)
 
-scaler_ratio = scaler.scale_
-scale_factor = 1/scaler_ratio
-y_predicted = y_predicted*scale_factor
-y_test = y_test*scale_factor
+#scaler_ratio = scaler.scale_
+#scale_factor = 1/scaler_ratio
+#y_predicted = y_predicted*scale_factor
+#y_test = y_test*scale_factor
 
+y_predicted = scaler.inverse_transform(np.array(y_predicted).reshape(-1,1))
+y_test = scaler.inverse_transform(np.array(y_test).reshape(-1,1))
 
 # ----------------- Plot Prediction-------------------------
 
@@ -209,5 +211,5 @@ if st.button("Analyze", use_container_width=True):
     st.subheader(f" * {stockDf.iloc[-1,0].strftime('%Y-%m-%d')} : {np.around(np.array(final_df.tail(1))[0][0],2)}")
     st.subheader(f" * {stockDf.iloc[-1,0].strftime('%Y-%m-%d')} prediction Value : {np.around(y_predicted[-1][0],2)}")
     st.subheader(f" * Offset : {np.around((np.array(final_df.tail(1))[0][0])-(y_predicted[-1][0]),2)}")
-    st.subheader(f" * Prediction for tomorrow : {np.around(x[0][0]*scale_factor,2)}")
+    st.subheader(f" * Prediction for tomorrow : {np.around(scaler.inverse_transform(x)[0][0],2)}")
     
