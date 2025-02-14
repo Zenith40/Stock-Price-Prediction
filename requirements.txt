@@ -4,6 +4,4 @@ pandas
 datetime
 numpy
 matplotlib
-keras
-sklearn
-python
+
