@@ -62,7 +62,7 @@ tickerData = yf.Ticker(tickerSymbol)
 
 # get the historical prices for this ticker
 
-tickerDf = tickerData.history(period='1d', start=start_date, end=end_date)
+tickerDf = tickerData.history(period='1d', start=today, end=tomorrow)
 # Open	High	Low	Close	Volume	Dividends	Stock Splits
 
 
